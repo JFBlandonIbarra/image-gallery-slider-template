@@ -1,0 +1,136 @@
+body {
+    background-color: black;
+}
+
+/* Contenedor del slider en la parte inferior */
+.slider-container {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para el track del slider */
+.track-container {
+    position: relative;
+    width: 100%;
+    height: 6px;
+}
+
+/* Estilo para el input range (slider) */
+input[type="range"] {
+    -webkit-appearance: none;
+    border: 2px solid #ffffff;
+    width: 100%;
+    height: 8px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Estilos para el thumb (la bolita del slider) para Chrome y Safari */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #8CC3CF; /* Color de la bolita */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff; /* Borde de la bolita */
+    margin-top: -7px; /* Ajuste del margen para centrar la bolita en el track */
+    position: relative;
+    z-index: 1; /* Asegura que el thumb esté por encima del track */
+}
+
+/* Estilos para el thumb (la bolita del slider) para Firefox */
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background:  #8CC3CF;   ; /* Color de la bolita */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff; /* Borde de la bolita */
+    margin-top: -7px; /* Ajuste del margen para centrar la bolita en el track */
+    position: relative;
+    z-index: 1; /* Asegura que el thumb esté por encima del track */
+}
+
+/* Estilos para las marcas (ticks) */
+.ticks {
+    position: absolute;
+    width: 100%;
+    height: 4px; /* Altura de las marcas */
+    top: 50%;
+    left: 0;
+    pointer-events: none; /* Permite que los clicks pasen a los elementos debajo */
+}
+
+.ticks::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 6px;
+    background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(100% / 30 - 1px), /* Espacio reducido antes del primer tick grueso */
+        #ffffff calc(100% / 30), /* Primer tick grueso */
+        transparent calc(100% /30 - 1px), /* Espacio reducido entre ticks */
+        #ffffff calc(100% / 30), /* Tamaño de los ticks */
+        transparent calc(100% /30 + 1px) /* Espacio reducido después de cada tick */
+    );
+    z-index: 1; /* Asegura que las marcas estén por encima del track pero debajo del thumb */
+}
+
+/* Estilos para los valores numéricos debajo del slider */
+.values-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px; /* Tamaño de fuente por defecto */
+    color: white;
+    margin-top: 20px; /* Espacio entre el slider y los valores numéricos */
+}
+
+/* Estilo para cada valor numérico */
+.values-container span {
+    flex: 1;
+    text-align: center;
+}
+
+/* Asegúrate de que solo la imagen activa se muestre */
+.gallery-container img {
+    display: none;
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+}
+
+.gallery-container img.active {
+    display: block;
+}
